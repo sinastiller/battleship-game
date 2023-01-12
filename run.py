@@ -1,27 +1,38 @@
 """
 Importing the randint function from the random module
 """
-# import random
+import random
 
 # Declaring of Constant Variables
 # Declares the different lengths of the five ships
-LENGTH_OF_SHIPS = [2, 3, 3, 4, 5]
+SHIPS = [2, 3, 3, 4, 5]
 # Declares two empty game boards
-USER_BOARD = [["-"] * 8 for i in range(8)]
-COMP_BOARD = [["-"] * 8 for i in range(8)]
+USER_BOARD = [["-"] * 8 for x in range(8)]
+COMP_BOARD = [["-"] * 8 for x in range(8)]
 # Declares two boards for the guesses of the user and the computer
-USER_BOARD_GUESS = [["-"] * 8 for i in range(8)]
-COMP_BOARD_GUESS = [["-"] * 8 for i in range(8)]
+USER_BOARD_GUESS = [["-"] * 8 for x in range(8)]
+COMP_BOARD_GUESS = [["-"] * 8 for x in range(8)]
 # Converting letter to numbers for the grid
 GRID = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7}
 
-# Printing the board function
+# Creating the board with numbers for columns and letters for rows
 
 
 def create_board(board):
     print(" ", " ".join("12345678"))
+    print(" ================")
     for letter, row in zip("ABCDEFGH", board):
         print(letter, " ".join(row))
 
+# Positioning the ships on board, randomly for computer and for user through input
 
-create_board(COMP_BOARD)
+
+def position_ships(board):
+    # looping through the different ship types
+    for length_of_ships in SHIPS:
+        # while looping,ships can not lay over each other
+        while True:
+            if board == COMP_BOARD:
+                direction = random.choice(["Horizontal", "Vertical"])
+                row = random.randint(0, 7)
+                column = random.randint(0, 7)

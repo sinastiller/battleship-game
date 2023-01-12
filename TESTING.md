@@ -3,4 +3,4 @@
 | Print(LENGTH_OF_SHIPS) | Prints List including numbers | print into terminal | prints: [2, 3, 3, 4, 5] |
 | Print(USER_BOARD) | Prints List containg eight Lists including eight "-"   | print into terminal | prints: [['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-']]|
 | print(GRID) | Prints dictionary including key(letters): value(numbers) pairs | print to terminal | prints: {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}|
-| create_board(COMP_BOARD)| Prints computer board containing the rows(with numbers) and columns(with letters) | Print to terminal | Prints empty board to terminal |
+| create_board(COMP_BOARD)| Prints computer board containing the rows(with letters) and columns(with numbers) | Print to terminal | Prints empty board to terminal |
