@@ -53,3 +53,17 @@ def ship_fits(length_of_ships, direction, row, column):
             return False
         else:
             return True
+
+# Checks to see if ships do not cross over each other
+
+
+def ships_cross(length_of_ships, direction, row, column, board):
+    if direction == "horizontal":
+        for x in range(column, column + length_of_ships):
+            if board[row][x] == "O":
+                return True
+    else:
+        for x in range(row, row + length_of_ships):
+            if board[column][x] == "O":
+                return True
+    return False
