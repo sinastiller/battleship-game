@@ -36,3 +36,20 @@ def position_ships(board):
                 direction = random.choice(["Horizontal", "Vertical"])
                 row = random.randint(0, 7)
                 column = random.randint(0, 7)
+                # Checking to see if ships do not leave the size of the grid
+                if ship_fits(length_of_ships, direction, row, column):
+
+# Checks to see if ships do not leave the grid
+
+
+def ship_fits(length_of_ships, direction, row, column):
+    if direction == "Horizontal":
+        if column + length_of_ships > 8:
+            return False
+        else:
+            return True
+    else:
+        if row + length_of_ships > 8:
+            return False
+        else:
+            return True
