@@ -1,0 +1,5 @@
+| FEATURE | EXPECTED OUTCOME| ACTION | RESULT |
+| -------------              | -------------                                | ------------- | ------------- |
+| Print(LENGTH_OF_SHIPS) | Printed List including numbers | print into terminal | prints: [2, 3, 3, 4, 5] |
+| Print(USER_BOARD) | Printed List containg eight Lists including eight "-"   | print into terminal | prints: [['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-']]|
+| print(GRID) | Printed dictionary including key(letters): value(numbers) pairs | print to terminal | prints: {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}|
