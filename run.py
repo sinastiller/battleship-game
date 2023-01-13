@@ -24,7 +24,8 @@ def create_board(board):
     for letter, row in zip("ABCDEFGH", board):
         print(letter, " ".join(row))
 
-# Positioning the ships on board, randomly for computer and for user through input
+# Positioning the ships on board, randomly for computer and for user through
+# input
 
 
 def position_ships(board):
@@ -93,3 +94,56 @@ def ships_cross(length_of_ships, direction, row, column, board):
             if board[column][x] == "O":
                 return True
     return False
+
+# Asks user to place their ships on the grid
+
+
+def input_user(position_ship):
+    if position_ship is True:
+        # direction positioning
+        while True:
+            try:
+                direction = input("Would you like to position your ship horizontal or vertical? Please enter the "
+                                  "direction of the ship(horizontal or vertical):\n ").lower()
+                if direction == "horizontal" or direction == "vertical":
+                    break
+            except TypeError:
+                print("Please enter either horizontal or vertical.\n")
+        # column positioning
+        while True:
+            try:
+                column = input("Which column would you like to place your ship in? Please enter a number from 1-8:\n")
+                if column in "12345678":
+                    column = int(column) - 1
+                    break
+            except ValueError:
+                print("Please enter a valid number from 1-8.\n")
+        # row positioning
+        while True:
+            try:
+                row = input("Which row would you like to place your ship in? Please enter a letter from A-H:\n").upper()
+                if row in "ABCDEFGH":
+                    row = GRID[row]
+                    break
+            except KeyError:
+                print("Please enter a valid letter from A-H.\n")
+            return direction, column, row
+        # guessing position of ship:
+        while True:
+            try:
+                column = input("Guess a column where the computer's ship might be located? Please enter a number from "
+                               "1-8:\n")
+                if column in "12345678":
+                    column = int(column) - 1
+                    break
+            except ValueError:
+                print("Please enter a valid number from 1-8.\n")
+        while True:
+            try:
+                row = input("Guess a row where the computer's ship might be located? Please enter a letter from A-H:\n").upper()
+                if row in "ABCDEFGH":
+                    row = GRID[row]
+                    break
+            except KeyError:
+                print("Please enter a valid letter from A-H.\n")
+            return column, row
