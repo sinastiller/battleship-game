@@ -48,6 +48,22 @@ def position_ships(board):
                             for x in range(row, row + length_of_ships):
                                 board[column][x] = "O"
                         break
+            # user's input to place ships
+            else:
+                position_ship = True
+                print("Position your ship with the length of " + str(length_of_ships))
+                column, row, direction = input_user(position_ship)
+                if ship_fits(length_of_ships, direction, row, column):
+                    # Checks to see if ships do not cross over each other
+                    if not ships_cross(length_of_ships, direction, row, column, board):
+                        # ships can be positioned
+                        if direction == "horizontal":
+                            for x in range(column, column + length_of_ships):
+                                board[row][x] = "O"
+                        else:
+                            for x in range(row, row + length_of_ships):
+                                board[column][x] = "O"
+                        break
 
 # Checks to see if ships do not leave the grid
 
