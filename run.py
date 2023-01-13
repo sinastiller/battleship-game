@@ -38,6 +38,16 @@ def position_ships(board):
                 column = random.randint(0, 7)
                 # Checking to see if ships do not leave the size of the grid
                 if ship_fits(length_of_ships, direction, row, column):
+                    # Checks to see if ships do not cross over each other
+                    if not ships_cross(length_of_ships, direction, row, column, board):
+                        # ships can be positioned
+                        if direction == "horizontal":
+                            for x in range(column, column + length_of_ships):
+                                board[row][x] = "O"
+                        else:
+                            for x in range(row, row + length_of_ships):
+                                board[column][x] = "O"
+                        break
 
 # Checks to see if ships do not leave the grid
 
