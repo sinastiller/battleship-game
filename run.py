@@ -1,76 +1,75 @@
 """
-Importing the randint function from the random module
+importing the random function
 """
 import random
 
-# Declaring of Constant Variables
-# Declares the different lengths of the five ships
+# declaring of constant variables
+# declares the different lengths of the five ships
 SHIPS = [2, 3, 3, 4, 5]
 # Declares two empty game boards
-USER_BOARD = [["-"] * 8 for x in range(8)]
-COMP_BOARD = [["-"] * 8 for x in range(8)]
-# Declares two boards for the guesses of the user and the computer
-USER_BOARD_GUESS = [["-"] * 8 for x in range(8)]
-COMP_BOARD_GUESS = [["-"] * 8 for x in range(8)]
-# Converting letter to numbers for the grid
-GRID = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7}
-
-# Creating the board with numbers for columns and letters for rows
+USER_BOARD = [["-"] * 8 for i in range(8)]
+COMP_BOARD = [["-"] * 8 for i in range(8)]
+# declares two boards for the guesses of the user and the computer
+USER_BOARD_GUESS = [["-"] * 8 for i in range(8)]
+COMP_BOARD_GUESS = [["-"] * 8 for i in range(8)]
+# converting letter to numbers for the grid
+GRID = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 
+# creating the board with numbers for columns and letters for rows
 def create_board(board):
     print(" ", " ".join("12345678"))
     print(" ================")
     for letter, row in zip("ABCDEFGH", board):
         print(letter, " ".join(row))
 
-# Positioning the ships on board, randomly for computer and for user through
-# input
 
-
+# positioning the ships on board, randomly for computer and for user through manual input
 def position_ships(board):
     # looping through the different ship types
     for length_of_ships in SHIPS:
         # while looping,ships can not lay over each other
         while True:
             if board == COMP_BOARD:
-                direction = random.choice(["Horizontal", "Vertical"])
+                direction = random.choice(["S", "D"])
                 row = random.randint(0, 7)
                 column = random.randint(0, 7)
-                # Checking to see if ships do not leave the size of the grid
-                if ship_fits(length_of_ships, direction, row, column):
+                # Checks to see if ships do not leave the grid
+                if ship_fits(length_of_ships, row, column, direction):
                     # Checks to see if ships do not cross over each other
-                    if not ships_cross(length_of_ships, direction, row, column, board):
-                        # ships can be positioned
-                        if direction == "horizontal":
-                            for x in range(column, column + length_of_ships):
-                                board[row][x] = "O"
+                    if not ships_cross(board, row, column, direction, length_of_ships):
+                        # place ship
+                        if direction == "S":
+                            for i in range(column, column + length_of_ships):
+                                board[row][i] = "X"
                         else:
-                            for x in range(row, row + length_of_ships):
-                                board[column][x] = "O"
+                            for i in range(row, row + length_of_ships):
+                                board[i][column] = "X"
                         break
             # user's input to place ships
             else:
                 position_ship = True
                 print("Position your ship with the length of " + str(length_of_ships))
-                column, row, direction = input_user(position_ship)
-                if ship_fits(length_of_ships, direction, row, column):
+                row, column, direction = input_user(position_ship)
+                if ship_fits(length_of_ships, row, column, direction):
                     # Checks to see if ships do not cross over each other
-                    if not ships_cross(length_of_ships, direction, row, column, board):
+                    if not ships_cross(board, row, column, direction, length_of_ships):
                         # ships can be positioned
-                        if direction == "horizontal":
-                            for x in range(column, column + length_of_ships):
-                                board[row][x] = "O"
+                        if direction == "S":
+                            for i in range(column, column + length_of_ships):
+                                board[row][i] = "X"
                         else:
-                            for x in range(row, row + length_of_ships):
-                                board[column][x] = "O"
+                            for i in range(row, row + length_of_ships):
+                                board[i][column] = "X"
+                        create_board(USER_BOARD)
                         break
 
+                    # check if ship fits in board
+
+
 # Checks to see if ships do not leave the grid
-
-
-def ship_fits(length_of_ships, direction, row, column):
-    if direction == "Horizontal":
+def ship_fits(length_of_ships, row, column, direction):
+    if direction == "S":
         if column + length_of_ships > 8:
             return False
         else:
@@ -81,43 +80,32 @@ def ship_fits(length_of_ships, direction, row, column):
         else:
             return True
 
+
 # Checks to see if ships do not cross over each other
-
-
-def ships_cross(length_of_ships, direction, row, column, board):
-    if direction == "horizontal":
-        for x in range(column, column + length_of_ships):
-            if board[row][x] == "O":
+def ships_cross(board, row, column, direction, length_of_ships):
+    if direction == "S":
+        for i in range(column, column + length_of_ships):
+            if board[row][i] == "X":
                 return True
     else:
-        for x in range(row, row + length_of_ships):
-            if board[column][x] == "O":
+        for i in range(row, row + length_of_ships):
+            if board[i][column] == "X":
                 return True
     return False
 
+
 # Asks user to place their ships on the grid
-
-
 def input_user(position_ship):
-    if position_ship is True:
+    if position_ship:
         # direction positioning
         while True:
             try:
-                direction = input("Would you like to position your ship horizontal or vertical? Please enter the "
-                                  "direction of the ship(horizontal or vertical):\n ").lower()
-                if direction == "horizontal" or direction == "vertical":
+                direction = input("Would you like to position your ship sideways or downwards? Please enter the "
+                                  "direction of the ship(S for sideways or D for downwards):\n ").upper()
+                if direction == "S" or direction == "D":
                     break
             except TypeError:
-                print("Please enter either horizontal or vertical.\n")
-        # column positioning
-        while True:
-            try:
-                column = input("Which column would you like to place your ship in? Please enter a number from 1-8:\n")
-                if column in "12345678":
-                    column = int(column) - 1
-                    break
-            except ValueError:
-                print("Please enter a valid number from 1-8.\n")
+                print("Please enter either S or D.\n")
         # row positioning
         while True:
             try:
@@ -127,8 +115,25 @@ def input_user(position_ship):
                     break
             except KeyError:
                 print("Please enter a valid letter from A-H.\n")
-            return direction, column, row
-        # guessing position of ship:
+        while True:
+            try:
+                column = input("Which column would you like to place your ship in? Please enter a number from 1-8:\n")
+                if column in "12345678":
+                    column = int(column) - 1
+                    break
+            except ValueError:
+                print("Please enter a valid number from 1-8.\n")
+        return row, column, direction
+    # guessing position of ship:
+    else:
+        while True:
+            try:
+                row = input("Guess a row where the computer's ship might be located? Please enter a letter from A-H:\n").upper()
+                if row in "ABCDEFGH":
+                    row = GRID[row]
+                    break
+            except KeyError:
+                print("Please enter a valid letter from A-H.\n")
         while True:
             try:
                 column = input("Guess a column where the computer's ship might be located? Please enter a number from "
@@ -138,15 +143,7 @@ def input_user(position_ship):
                     break
             except ValueError:
                 print("Please enter a valid number from 1-8.\n")
-        while True:
-            try:
-                row = input("Guess a row where the computer's ship might be located? Please enter a letter from A-H:\n").upper()
-                if row in "ABCDEFGH":
-                    row = GRID[row]
-                    break
-            except KeyError:
-                print("Please enter a valid letter from A-H.\n")
-            return column, row
+        return row, column
 
 
 # counts how many ships were hit
