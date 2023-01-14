@@ -18,6 +18,10 @@ GRID = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 # creating the board with numbers for columns and letters for rows
 def create_board(board):
+    if board == COMP_BOARD:
+        print("COMPUTER BOARD")
+    else:
+        print("USER BOARD")
     print(" ", " ".join("12345678"))
     print(" ================")
     for letter, row in zip("ABCDEFGH", board):
