@@ -157,3 +157,33 @@ def hit_ships(board):
             if column == "X":
                 count += 1
     return count
+
+
+# checks if a ship was hit or missed and printed on player's and computer's board
+def validate_guess(board):
+    if board == USER_BOARD_GUESS:
+        row, column = input_user(USER_BOARD_GUESS)
+        if board[row][column] == "|":
+            validate_guess(board)
+        elif board[row][column] == "X":
+            validate_guess(board)
+        elif COMP_BOARD[row][column] == "X":
+            board[row][column] = "X"
+        else:
+            board[row][column] = "|"
+    else:
+        row, column = random.randint(0, 7), random.randint(0, 7)
+        if board[row][column] == "|":
+            validate_guess(board)
+        elif board[row][column] == "X":
+            validate_guess(board)
+        elif USER_BOARD[row][column] == "X":
+            board[row][column] = "X"
+        else:
+            board[row][column] = "|"
+
+
+position_ships(COMP_BOARD)
+create_board(COMP_BOARD)
+create_board(USER_BOARD)
+position_ships(USER_BOARD)
