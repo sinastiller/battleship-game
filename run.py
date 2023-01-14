@@ -24,7 +24,8 @@ def create_board(board):
         print(letter, " ".join(row))
 
 
-# positioning the ships on board, randomly for computer and for user through manual input
+# positioning the ships on board, randomly for computer and for user through
+# manual input
 def position_ships(board):
     # looping through the different ship types
     for length_of_ships in SHIPS:
@@ -37,7 +38,8 @@ def position_ships(board):
                 # Checks to see if ships do not leave the grid
                 if ship_fits(length_of_ships, row, column, direction):
                     # Checks to see if ships do not cross over each other
-                    if not ships_cross(board, row, column, direction, length_of_ships):
+                    if not ships_cross(board, row, column, direction,
+                                       length_of_ships):
                         # place ship
                         if direction == "S":
                             for i in range(column, column + length_of_ships):
@@ -49,11 +51,13 @@ def position_ships(board):
             # user's input to place ships
             else:
                 position_ship = True
-                print("Position your ship with the length of " + str(length_of_ships))
+                print("Position your ship with the length of " +
+                      str(length_of_ships))
                 row, column, direction = input_user(position_ship)
                 if ship_fits(length_of_ships, row, column, direction):
                     # Checks to see if ships do not cross over each other
-                    if not ships_cross(board, row, column, direction, length_of_ships):
+                    if not ships_cross(board, row, column, direction,
+                                       length_of_ships):
                         # ships can be positioned
                         if direction == "S":
                             for i in range(column, column + length_of_ships):
@@ -100,8 +104,10 @@ def input_user(position_ship):
         # direction positioning
         while True:
             try:
-                direction = input("Would you like to position your ship sideways or downwards? Please enter the "
-                                  "direction of the ship(S for sideways or D for downwards):\n ").upper()
+                direction = input("Would you like to position your ship "
+                                  "sideways or downwards? Please enter the "
+                                  "direction of the ship(S for sideways or D "
+                                  "for downwards):\n ").upper()
                 if direction == "S" or direction == "D":
                     break
             except TypeError:
@@ -109,7 +115,8 @@ def input_user(position_ship):
         # row positioning
         while True:
             try:
-                row = input("Which row would you like to place your ship in? Please enter a letter from A-H:\n").upper()
+                row = input("Which row would you like to place your ship in? "
+                            "Please enter a letter from A-H:\n").upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
@@ -117,7 +124,8 @@ def input_user(position_ship):
                 print("Please enter a valid letter from A-H.\n")
         while True:
             try:
-                column = input("Which column would you like to place your ship in? Please enter a number from 1-8:\n")
+                column = input("Which column would you like to place your ship"
+                               " in? Please enter a number from 1-8:\n")
                 if column in "12345678":
                     column = int(column) - 1
                     break
@@ -128,7 +136,9 @@ def input_user(position_ship):
     else:
         while True:
             try:
-                row = input("Guess a row where the computer's ship might be located? Please enter a letter from A-H:\n").upper()
+                row = input("Guess a row where the computer's ship might"
+                            "be located? Please enter a letter from "
+                            "A-H:\n").upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
@@ -136,7 +146,8 @@ def input_user(position_ship):
                 print("Please enter a valid letter from A-H.\n")
         while True:
             try:
-                column = input("Guess a column where the computer's ship might be located? Please enter a number from "
+                column = input("Guess a column where the computer's ship might"
+                               " be located? Please enter a number from "
                                "1-8:\n")
                 if column in "12345678":
                     column = int(column) - 1
@@ -156,7 +167,8 @@ def hit_ships(board):
     return count
 
 
-# checks if a ship was hit or missed and printed on player's and computer's board
+# checks if a ship was hit or missed and printed on player's and computer's
+# board
 def validate_guess(board):
     if board == USER_BOARD_GUESS:
         row, column = input_user(USER_BOARD_GUESS)
@@ -188,12 +200,14 @@ position_ships(USER_BOARD)
 while True:
     # player's turn
     while True:
-        print("It's your turn. Try and guess to see where the battleships of the computer are located.")
+        print("It's your turn. Try and guess to see where the battleships of"
+              " the computer are located.")
         create_board(USER_BOARD_GUESS)
         validate_guess(USER_BOARD_GUESS)
         break
     if hit_ships(USER_BOARD_GUESS) == 17:
-        print("Congratulations, you sank all the computer's ships and won the game!")
+        print("Congratulations, you sank all the computer's ships and won the "
+              "game!")
         break
         # computer's turn
     while True:
@@ -201,5 +215,6 @@ while True:
         break
     create_board(COMP_BOARD_GUESS)
     if hit_ships(COMP_BOARD_GUESS) == 17:
-        print("You lost. The Computer has guessed all your ships and won the battle!")
+        print("You lost. The Computer has guessed all your ships and won the "
+              "battle!")
         break
