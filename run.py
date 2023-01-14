@@ -147,3 +147,13 @@ def input_user(position_ship):
             except KeyError:
                 print("Please enter a valid letter from A-H.\n")
             return column, row
+
+
+# counts how many ships were hit
+def hit_ships(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column == "X":
+                count += 1
+    return count
