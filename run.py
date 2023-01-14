@@ -187,3 +187,22 @@ position_ships(COMP_BOARD)
 create_board(COMP_BOARD)
 create_board(USER_BOARD)
 position_ships(USER_BOARD)
+
+while True:
+    # player's turn
+    while True:
+        print("It's your turn. Try and guess to see where the battleships of the computer are located.")
+        create_board(USER_BOARD_GUESS)
+        validate_guess(USER_BOARD_GUESS)
+        break
+    if hit_ships(USER_BOARD_GUESS) == 17:
+        print("Congratulations, you sank all the computer's ships and won the game!")
+        break
+        # computer's turn
+    while True:
+        validate_guess(COMP_BOARD_GUESS)
+        break
+    create_board(COMP_BOARD_GUESS)
+    if hit_ships(COMP_BOARD_GUESS) == 17:
+        print("You lost. The Computer has guessed all your ships and won the battle!")
+        break
