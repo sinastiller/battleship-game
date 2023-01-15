@@ -121,7 +121,9 @@ def input_user(position_ship):
                                   "for downwards):\n ").upper()
                 if direction == "S" or direction == "D":
                     break
-            except ValueError:
+                else:
+                    raise KeyError
+            except KeyError:
                 print("Please enter either S or D.\n")
         # row positioning
         while True:
@@ -131,6 +133,8 @@ def input_user(position_ship):
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
+                else:
+                    raise KeyError
             except KeyError:
                 print("Please enter a valid letter from A-H.\n")
         while True:
@@ -140,6 +144,8 @@ def input_user(position_ship):
                 if column in "12345678":
                     column = int(column) - 1
                     break
+                else:
+                    raise ValueError
             except ValueError:
                 print("Please enter a valid number from 1-8.\n")
         return row, column, direction
@@ -153,7 +159,9 @@ def input_user(position_ship):
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
-            except ValueError:
+                else:
+                    raise KeyError
+            except KeyError:
                 print("Please enter a valid letter from A-H.\n")
         while True:
             try:
@@ -163,6 +171,8 @@ def input_user(position_ship):
                 if column in "12345678":
                     column = int(column) - 1
                     break
+                else:
+                    raise ValueError
             except ValueError:
                 print("Please enter a valid number from 1-8.\n")
         return row, column
