@@ -20,12 +20,21 @@ GRID = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 def create_board(board):
     if board == COMP_BOARD:
         print("COMPUTER BOARD")
+        print("-" * 17)
+    elif board == USER_BOARD:
+        print("PLAYER BOARD")
+        print("-" * 17)
+    elif board == COMP_BOARD_GUESS:
+        print("COMPUTER GUESSED")
+        print("-" * 17)
     else:
-        print("USER BOARD")
+        print("PLAYER GUESSED")
+        print("-" * 17)
     print(" ", " ".join("12345678"))
-    print(" ================")
+    print("=" * 17)
     for letter, row in zip("ABCDEFGH", board):
         print(letter, " ".join(row))
+    print("\n")
 
 
 # positioning the ships on board, randomly for computer and for user through
@@ -71,8 +80,6 @@ def position_ships(board):
                                 board[i][column] = "X"
                         create_board(USER_BOARD)
                         break
-
-                    # check if ship fits in board
 
 
 # Checks to see if ships do not leave the grid
@@ -204,9 +211,9 @@ position_ships(USER_BOARD)
 while True:
     # player's turn
     while True:
-        print("It's your turn. Try and guess to see where the battleships of"
-              " the computer are located.")
         create_board(USER_BOARD_GUESS)
+        print("It's your turn. Try and guess to see where the battleships of"
+              " the computer are located.\n")
         validate_guess(USER_BOARD_GUESS)
         break
     if hit_ships(USER_BOARD_GUESS) == 17:
@@ -217,6 +224,7 @@ while True:
     while True:
         validate_guess(COMP_BOARD_GUESS)
         break
+    print("\n")
     create_board(COMP_BOARD_GUESS)
     if hit_ships(COMP_BOARD_GUESS) == 17:
         print("You lost. The Computer has guessed all your ships and won the "
