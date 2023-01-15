@@ -18,10 +18,7 @@ GRID = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 # creating the board with numbers for columns and letters for rows
 def create_board(board):
-    if board == COMP_BOARD:
-        print("COMPUTER BOARD")
-        print("-" * 17)
-    elif board == USER_BOARD:
+    if board == USER_BOARD:
         print("PLAYER BOARD")
         print("-" * 17)
     elif board == COMP_BOARD_GUESS:
@@ -56,10 +53,10 @@ def position_ships(board):
                         # place ship
                         if direction == "S":
                             for i in range(column, column + length_of_ships):
-                                board[row][i] = "X"
+                                board[row][i] = "O"
                         else:
                             for i in range(row, row + length_of_ships):
-                                board[i][column] = "X"
+                                board[i][column] = "O"
                         break
             # user's input to place ships
             else:
@@ -74,10 +71,10 @@ def position_ships(board):
                         # ships can be positioned
                         if direction == "S":
                             for i in range(column, column + length_of_ships):
-                                board[row][i] = "X"
+                                board[row][i] = "O"
                         else:
                             for i in range(row, row + length_of_ships):
-                                board[i][column] = "X"
+                                board[i][column] = "O"
                         create_board(USER_BOARD)
                         break
 
@@ -100,11 +97,15 @@ def ship_fits(length_of_ships, row, column, direction):
 def ships_cross(board, row, column, direction, length_of_ships):
     if direction == "S":
         for i in range(column, column + length_of_ships):
-            if board[row][i] == "X":
+            if board[row][i] == "O":
+                print("\nYou have already placed a ship here. Please place "
+                      "in empty field.\n")
                 return True
     else:
         for i in range(row, row + length_of_ships):
-            if board[i][column] == "X":
+            if board[i][column] == "O":
+                print("\nYou have already placed a ship here. Please place "
+                      "in empty field.\n")
                 return True
     return False
 
@@ -183,7 +184,7 @@ def hit_ships(board):
     count = 0
     for row in board:
         for column in row:
-            if column == "X":
+            if column == "O":
                 count += 1
     return count
 
@@ -195,9 +196,9 @@ def validate_guess(board):
         row, column = input_user(USER_BOARD_GUESS)
         if board[row][column] == "|":
             validate_guess(board)
-        elif board[row][column] == "X":
+        elif board[row][column] == "O":
             validate_guess(board)
-        elif COMP_BOARD[row][column] == "X":
+        elif COMP_BOARD[row][column] == "O":
             board[row][column] = "X"
         else:
             board[row][column] = "|"
@@ -205,16 +206,15 @@ def validate_guess(board):
         row, column = random.randint(0, 7), random.randint(0, 7)
         if board[row][column] == "|":
             validate_guess(board)
-        elif board[row][column] == "X":
+        elif board[row][column] == "O":
             validate_guess(board)
-        elif USER_BOARD[row][column] == "X":
+        elif USER_BOARD[row][column] == "O":
             board[row][column] = "X"
         else:
             board[row][column] = "|"
 
 
 position_ships(COMP_BOARD)
-create_board(COMP_BOARD)
 create_board(USER_BOARD)
 position_ships(USER_BOARD)
 
