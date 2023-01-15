@@ -104,7 +104,7 @@ def ships_cross(board, row, column, direction, length_of_ships):
 
 # Asks user to place their ships on the grid
 def input_user(position_ship):
-    if position_ship:
+    if position_ship is True:
         # direction positioning
         while True:
             try:
@@ -114,7 +114,7 @@ def input_user(position_ship):
                                   "for downwards):\n ").upper()
                 if direction == "S" or direction == "D":
                     break
-            except TypeError:
+            except ValueError:
                 print("Please enter either S or D.\n")
         # row positioning
         while True:
@@ -140,13 +140,13 @@ def input_user(position_ship):
     else:
         while True:
             try:
-                row = input("Guess a row where the computer's ship might"
-                            "be located? Please enter a letter from "
-                            "A-H:\n").upper()
+                row = str(input("Guess a row where the computer's ship might"
+                                "be located? Please enter a letter from "
+                                "A-H:\n")).upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
-            except KeyError:
+            except ValueError:
                 print("Please enter a valid letter from A-H.\n")
         while True:
             try:
