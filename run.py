@@ -97,13 +97,13 @@ def ship_fits(length_of_ships, row, column, direction):
 def ships_cross(board, row, column, direction, length_of_ships):
     if direction == "S":
         for i in range(column, column + length_of_ships):
-            if board[row][i] == "O":
+            if board[row][i] == "O" and board == USER_BOARD:
                 print("\nYou have already placed a ship here. Please place "
                       "in empty field.\n")
                 return True
     else:
         for i in range(row, row + length_of_ships):
-            if board[i][column] == "O":
+            if board[i][column] == "O" and board == USER_BOARD:
                 print("\nYou have already placed a ship here. Please place "
                       "in empty field.\n")
                 return True
@@ -200,8 +200,10 @@ def validate_guess(board):
             validate_guess(board)
         elif COMP_BOARD[row][column] == "O":
             board[row][column] = "X"
+            print("You got a hit!")
         else:
             board[row][column] = "|"
+            print("Try again. You missed!")
     else:
         row, column = random.randint(0, 7), random.randint(0, 7)
         if board[row][column] == "|":
@@ -210,8 +212,10 @@ def validate_guess(board):
             validate_guess(board)
         elif USER_BOARD[row][column] == "O":
             board[row][column] = "X"
+            print("Oh no! The computer hit you!")
         else:
             board[row][column] = "|"
+            print("Lucky, the Computer missed!")
 
 
 position_ships(COMP_BOARD)
