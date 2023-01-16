@@ -129,6 +129,8 @@ def position_ships(board):
                             break
                         create_board(USER_BOARD)
                         break
+                else:
+                    print("\nPlease place ship within the grid.\n")
 
 
 # Checks to see if ships do not leave the grid
@@ -232,7 +234,7 @@ def hit_ships(board):
     count = 0
     for row in board:
         for column in row:
-            if column == "O":
+            if column == "X":
                 count += 1
     return count
 
@@ -284,13 +286,13 @@ def run_game():
         # player's turn
         while True:
             create_board(USER_BOARD_GUESS)
-            print_fast("It's your turn.")
+            print_fast("It's your turn.\n")
             validate_guess(USER_BOARD_GUESS)
             break
         if hit_ships(USER_BOARD_GUESS) == 17:
             print_slow("Congratulations, you sank all the computer's ships and"
                        " won the game!\n")
-        else:
+            restart_game()
             break
             # computer's turn
         while True:
@@ -301,13 +303,13 @@ def run_game():
         if hit_ships(COMP_BOARD_GUESS) == 17:
             print_slow("You lost. The Computer has guessed all your ships and"
                        " won the battle!")
-        else:
+            restart_game()
             break
 
 
 def restart_game():
     restart = input("Would you like to play again? Enter Y(yes)"
-                    "or N(no): ")
+                    "or N(no): ").upper()
     while True:
         if restart == "Y":
             run_game()
