@@ -273,8 +273,8 @@ def validate_guess(board):
         elif board[row][column] == "O":
             validate_guess(board)
         elif COMP_BOARD[row][column] == "O":
-            board[row][column] = "X"
-            print_fast("\nYou got a hit!")
+            board[row][column] = "\033[92mX\033[0m"
+            print_fast("\nYou got a \033[92mhit\033[0m!")
         else:
             board[row][column] = "|"
             print_fast("\nTry again. You missed!")
@@ -285,8 +285,8 @@ def validate_guess(board):
         elif board[row][column] == "O":
             validate_guess(board)
         elif USER_BOARD[row][column] == "O":
-            board[row][column] = "X"
-            print_fast("\nOh no! The computer hit you!")
+            board[row][column] = "\033[91mX\033[0m"
+            print_fast("\nOh no! The computer \033[91mhit\033[0m you!")
         else:
             board[row][column] = "|"
             print_fast("\nLucky, the Computer missed!")
@@ -323,8 +323,8 @@ def run_game():
             create_board(COMP_BOARD_GUESS)
             break
         if hit_ships(COMP_BOARD_GUESS) == 17:
-            print_slow("You lost. The Computer has guessed all your ships and"
-                       " won the battle!")
+            print_slow("You lost. The Computer has destroyed all your ships"
+                       " and won the battle!")
             restart_game()
             break
 
@@ -337,15 +337,15 @@ def restart_game():
                     "or N(no): ").upper()
     while True:
         if restart == "Y":
-            print("Please run program again.")
+            print_slow("Please run program again.")
             break
         elif restart == "N":
-            print("Hope you enjoyed the game. See you next time!")
+            print.slow("Hope you enjoyed the game. See you next time!")
             break
         else:
             print("Please type Y or N.")
             break
 
 
-# welcome_message()
+welcome_message()
 run_game()
