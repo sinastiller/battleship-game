@@ -35,10 +35,18 @@ def print_slow(word):
 def welcome_message():
     print_slow("ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ʙᴀᴛᴛʟᴇꜱʜɪᴘ ɢᴀᴍᴇ!\n\n")
     sleep(0.5)
-    name = (str(input("\033[1mWhat is your name, Fighter?: ")))
+
+    characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -'
+    while True:
+        name = (str(input("\033[1mWhat is your name, Fighter?: ")))
+        if all(char in characters for char in name) and len(name) >= 2:
+            break
+        print("That's not valid, please enter you name.\n")
+
     print_slow("\033[1m\nHere are just some quick rules "
                f"before we start the game, {name}: ")
-    print_fast("\033[1m\n\nThe grid consists of 8 rows(A-H) and 8 columns(1-8).\n")
+    print_fast("\033[1m\n\nThe grid consists of 8 rows(A-H) and 8 columns(1-8)"
+               ".\n")
     print_fast("\033[1m\nThere are 5 different ship types:\n")
     print_fast("\033[36m      Carrier - which has five holes\n")
     print_fast("\033[36m      Battleship - which has four holes\n")
