@@ -113,15 +113,20 @@ def position_ships(board):
                 row, column, direction = input_user(position_ship)
                 if ship_fits(length_of_ships, row, column, direction):
                     # Checks to see if ships do not cross over each other
-                    if not ships_cross(board, row, column, direction,
-                                       length_of_ships):
-                        # ships can be positioned
+                    if ships_cross(board, row, column, direction,
+                                   length_of_ships):
+                        print("\nYou have already placed a ship here. Please"
+                              " place in empty field.\n")
+                    # ships can be positioned
+                    else:
                         if direction == "S":
                             for i in range(column, column + length_of_ships):
                                 board[row][i] = "O"
-                        else:
+                        elif direction == "D": 
                             for i in range(row, row + length_of_ships):
                                 board[i][column] = "O"
+                        else:
+                            break
                         create_board(USER_BOARD)
                         break
 
@@ -145,15 +150,11 @@ def ships_cross(board, row, column, direction, length_of_ships):
     if direction == "S":
         for i in range(column, column + length_of_ships):
             if board[row][i] == "O":
-                print("\nYou have already placed a ship here. Please place"
-                      " in empty field.\n")
-            return True
+                return True
     else:
         for i in range(row, row + length_of_ships):
             if board[i][column] == "O":
-                print("\nYou have already placed a ship here. Please place"
-                      " in empty field.\n")
-            return True
+                return True
     return False
 
 
@@ -313,5 +314,5 @@ def run_game():
                 break
 
 
-welcome_message()
+# welcome_message()
 run_game()
