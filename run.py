@@ -312,7 +312,7 @@ def restart_game():
                     "or N(no): ").upper()
     while True:
         if restart == "Y":
-            run_game()
+            print("Please run program again.")
             break
         elif restart == "N":
             print("Hope you enjoyed the game. See you next time!")
@@ -320,3 +320,7 @@ def restart_game():
         else:
             print("Please type Y or N.")
             break
+
+
+welcome_message()
+run_game()
