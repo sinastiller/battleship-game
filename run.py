@@ -25,7 +25,7 @@ def print_fast(word):
     for character in word:
         sys.stdout.write(character)
         sys.stdout.flush()
-        sleep(0.01)
+        sleep(0.02)
 
 
 def print_slow(word):
@@ -48,27 +48,28 @@ def welcome_message():
     characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -'
 
     while True:
-        name = (input("\033[1mWhat is your name, Fighter?: "))
+        name = input("\033[1mWhat is your name, Fighter? ")
         if all(char in characters for char in name) and len(name) >= 2:
             break
         print("That's not valid, please enter you name.\n")
-
+        return name
     print_slow("\033[1m\nHere are just some quick rules "
                f"before we start the game, {name}: ")
     print_fast("\033[1m\n\nThe grid consists of 8 rows(A-H) and 8 columns(1-8)"
                ".\n")
     print_fast("\033[1m\nThere are 5 different ship types:\n")
-    print_fast("\033[36m      Carrier - which has five holes\n")
-    print_fast("\033[36m      Battleship - which has four holes\n")
-    print_fast("\033[36m      Cruiser - which has three holes\n")
-    print_fast("\033[36m      Submarine - which has three holes\n")
-    print_fast("\033[36m      Destroyer - which has two holes\n")
+    print_fast("\033[36m      Carrier - 5 in length\n")
+    print_fast("\033[36m      Battleship - 4 in length\n")
+    print_fast("\033[36m      Cruiser - 4 in length\n")
+    print_fast("\033[36m      Submarine - 3 in length\n")
+    print_fast("\033[36m      Destroyer - 2 in length\n")
     print_fast("\033[0m\033[1m\nThe computer chooses it's ships randomly.\n\n")
     print_fast(f"\033[1mYou, {name}, will be asked to place your ships, "
                "so choose carefully!\n\n")
     print_fast("\033[1mYou will then take turns trying to destroy each other's"
                " ships.\n\n")
     print_fast("\033[1mWhoever sinks the ships first wins!\n\n")
+    sleep(1)
     print_fast(f"\033[1mGood Luck, {name}!\033[0m\n\n")
 
 
@@ -77,19 +78,18 @@ def create_board(board):
     Creates the board with numbers for columns and letters for rows.
     """
     if board == USER_BOARD:
-        print("PLAYER BOARD")
+        print("\nPLAYER BOARD")
         print("-" * 17)
     elif board == COMP_BOARD_GUESS:
-        print("COMPUTER GUESSED")
+        print("\nCOMPUTER GUESSED")
         print("-" * 17)
     else:
-        print("PLAYER GUESSED")
+        print("\nPLAYER GUESSED")
         print("-" * 17)
     print(" ", " ".join("12345678"))
     print("=" * 17)
     for letter, row in zip("ABCDEFGH", board):
         print(letter, " ".join(row))
-    print("\n")
 
 
 def position_ships(board):
@@ -121,8 +121,8 @@ def position_ships(board):
             # user's input to place ships
             else:
                 position_ship = True
-                print("Position your ship with the length of " +
-                      str(length_of_ships))
+                print_slow("\nPosition your ship with the length of " +
+                           str(length_of_ships))
                 row, column, direction = input_user(position_ship)
                 if ship_fits(length_of_ships, row, column, direction):
                     # Checks to see if ships do not cross over each other
@@ -185,10 +185,10 @@ def input_user(position_ship):
         # direction positioning
         while True:
             try:
-                direction = input("Would you like to position your ship "
+                direction = input("\nWould you like to position your ship "
                                   "sideways or downwards? Please enter the "
                                   "direction of the ship(S for sideways or D "
-                                  "for downwards):\n ").upper()
+                                  "for downwards):\n").upper()
                 if direction == "S" or direction == "D":
                     break
                 else:
@@ -224,7 +224,7 @@ def input_user(position_ship):
         while True:
             try:
                 row = str(input("Guess a row where the computer's ship might"
-                                "be located? Please enter a letter from "
+                                " be located? Please enter a letter from "
                                 "A-H:\n")).upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
@@ -274,10 +274,10 @@ def validate_guess(board):
             validate_guess(board)
         elif COMP_BOARD[row][column] == "O":
             board[row][column] = "X"
-            print("\nYou got a hit!")
+            print_fast("\nYou got a hit!")
         else:
             board[row][column] = "|"
-            print("\nTry again. You missed!")
+            print_fast("\nTry again. You missed!")
     else:
         row, column = random.randint(0, 7), random.randint(0, 7)
         if board[row][column] == "|":
@@ -286,21 +286,19 @@ def validate_guess(board):
             validate_guess(board)
         elif USER_BOARD[row][column] == "O":
             board[row][column] = "X"
-            print("\nOh no! The computer hit you!")
+            print_fast("\nOh no! The computer hit you!")
         else:
             board[row][column] = "|"
-            print("\nLucky, the Computer missed!")
+            print_fast("\nLucky, the Computer missed!")
 
 
 def run_game():
     """
     Starts the game
     """
-    start_game = input("Please type S to start the game: ").upper()
+    start_game = input("\nPlease type S to start the game: ").upper()
     while start_game != "S":
         start_game = input("Please type S to start the game: ").upper()
-
-    print("\n\n\n")
 
     position_ships(COMP_BOARD)
     create_board(USER_BOARD)
@@ -309,9 +307,10 @@ def run_game():
     while True:
         # player's turn
         while True:
-            create_board(USER_BOARD_GUESS)
-            print_fast("It's your turn.\n")
+            print("\n")
+            print_fast("Now it's your turn.\n")
             validate_guess(USER_BOARD_GUESS)
+            create_board(USER_BOARD_GUESS)
             break
         if hit_ships(USER_BOARD_GUESS) == 17:
             print_slow("Congratulations, you sank all the computer's ships and"
@@ -321,9 +320,8 @@ def run_game():
             # computer's turn
         while True:
             validate_guess(COMP_BOARD_GUESS)
+            create_board(COMP_BOARD_GUESS)
             break
-        print("\n")
-        create_board(COMP_BOARD_GUESS)
         if hit_ships(COMP_BOARD_GUESS) == 17:
             print_slow("You lost. The Computer has guessed all your ships and"
                        " won the battle!")
@@ -349,5 +347,5 @@ def restart_game():
             break
 
 
-welcome_message()
+# welcome_message()
 run_game()
