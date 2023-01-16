@@ -3,3 +3,4 @@
 https://stackoverflow.com/questions/20302331/typing-effect-in-python - fast/slow typing
 https://lingojam.com/CoolTextFonts - text/fonts
 https://stackoverflow.com/questions/8924173/how-can-i-print-bold-text-in-python fontstyles/colours
+https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069 battleships rules

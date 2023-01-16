@@ -20,3 +20,4 @@
 
 - fixing input_user() by checking if position_ship() is TRUE
 - fixing Type/Key Errors by adding an else-satement to raise error
+- fixing ship_cross() as function wasnt working wit COMP_BOARD

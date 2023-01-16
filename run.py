@@ -122,7 +122,7 @@ def position_ships(board):
                         if direction == "S":
                             for i in range(column, column + length_of_ships):
                                 board[row][i] = "O"
-                        elif direction == "D": 
+                        elif direction == "D":
                             for i in range(row, row + length_of_ships):
                                 board[i][column] = "O"
                         else:
@@ -284,19 +284,14 @@ def run_game():
         # player's turn
         while True:
             create_board(USER_BOARD_GUESS)
-            print_fast("It's your turn. Try and guess to see where the"
-                       " battleships of the computer are located.\n")
+            print_fast("It's your turn.")
             validate_guess(USER_BOARD_GUESS)
             break
         if hit_ships(USER_BOARD_GUESS) == 17:
             print_slow("Congratulations, you sank all the computer's ships and"
                        " won the game!\n")
-            restart_game = input("Would you like to play again? Enter Y(yes)"
-                                 "or N(no): ")
-            if restart_game == "Y":
-                run_game()
-            else:
-                break
+        else:
+            break
             # computer's turn
         while True:
             validate_guess(COMP_BOARD_GUESS)
@@ -306,13 +301,20 @@ def run_game():
         if hit_ships(COMP_BOARD_GUESS) == 17:
             print_slow("You lost. The Computer has guessed all your ships and"
                        " won the battle!")
-            restart_game = input("Would you like to play again? Enter Y(yes)"
-                                 "or N(no): ")
-            if restart_game == "Y":
-                run_game()
-            else:
-                break
+        else:
+            break
 
 
-# welcome_message()
-run_game()
+def restart_game():
+    restart = input("Would you like to play again? Enter Y(yes)"
+                    "or N(no): ")
+    while True:
+        if restart == "Y":
+            run_game()
+            break
+        elif restart == "N":
+            print("Hope you enjoyed the game. See you next time!")
+            break
+        else:
+            print("Please type Y or N.")
+            break
