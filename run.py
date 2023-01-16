@@ -19,20 +19,29 @@ GRID = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 
 def print_fast(word):
+    """
+    Prints output fast.
+    """
     for character in word:
         sys.stdout.write(character)
         sys.stdout.flush()
-        sleep(0.02)
+        sleep(0.01)
 
 
 def print_slow(word):
+    """
+    Prints output slow.
+    """
     for character in word:
         sys.stdout.write(character)
         sys.stdout.flush()
-        sleep(0.06)
+        sleep(0.04)
 
 
 def welcome_message():
+    """
+    Welcome message to user and instructions for the game.
+    """
     print_slow("ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ʙᴀᴛᴛʟᴇꜱʜɪᴘ ɢᴀᴍᴇ!\n\n")
     sleep(0.5)
 
@@ -63,8 +72,10 @@ def welcome_message():
     print_fast(f"\033[1mGood Luck, {name}!\033[0m\n\n")
 
 
-# creating the board with numbers for columns and letters for rows
 def create_board(board):
+    """
+    Creates the board with numbers for columns and letters for rows.
+    """
     if board == USER_BOARD:
         print("PLAYER BOARD")
         print("-" * 17)
@@ -81,9 +92,11 @@ def create_board(board):
     print("\n")
 
 
-# positioning the ships on board, randomly for computer and for user through
-# manual input
 def position_ships(board):
+    """
+    positioning the ships on board, randomly for computer and for user through
+    manual input
+    """
     # looping through the different ship types
     for length_of_ships in SHIPS:
         # while looping,ships can not lay over each other
@@ -133,8 +146,10 @@ def position_ships(board):
                     print("\nPlease place ship within the grid.\n")
 
 
-# Checks to see if ships do not leave the grid
 def ship_fits(length_of_ships, row, column, direction):
+    """
+    Checks to see if ships do not leave the grid
+    """
     if direction == "S":
         if column + length_of_ships > 8:
             return False
@@ -147,8 +162,10 @@ def ship_fits(length_of_ships, row, column, direction):
             return True
 
 
-# Checks to see if ships do not cross over each other
 def ships_cross(board, row, column, direction, length_of_ships):
+    """
+    Checks to see if ships do not cross over each other
+    """
     if direction == "S":
         for i in range(column, column + length_of_ships):
             if board[row][i] == "O":
@@ -160,8 +177,10 @@ def ships_cross(board, row, column, direction, length_of_ships):
     return False
 
 
-# Asks user to place their ships on the grid
 def input_user(position_ship):
+    """
+    Asks user to place their ships on the grid
+    """
     if position_ship is True:
         # direction positioning
         while True:
@@ -229,8 +248,10 @@ def input_user(position_ship):
         return row, column
 
 
-# counts how many ships were hit
 def hit_ships(board):
+    """
+    Counts how many ships were hit
+    """
     count = 0
     for row in board:
         for column in row:
@@ -239,10 +260,13 @@ def hit_ships(board):
     return count
 
 
-# checks if a ship was hit or missed and printed on player's and computer's
-# board
 def validate_guess(board):
+    """
+    checks if a ship was hit or missed and printed on player's and computer's
+    board
+    """
     if board == USER_BOARD_GUESS:
+        # pylint: disable=unbalanced-tuple-unpacking
         row, column = input_user(USER_BOARD_GUESS)
         if board[row][column] == "|":
             validate_guess(board)
@@ -308,6 +332,9 @@ def run_game():
 
 
 def restart_game():
+    """
+    Asks user if restart is desired.
+    """
     restart = input("Would you like to play again? Enter Y(yes)"
                     "or N(no): ").upper()
     while True:
