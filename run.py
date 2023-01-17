@@ -320,8 +320,9 @@ def run_game():
         # player's turn
         while True:
             print_fast("Now it's your turn.\n\n")
-            validate_guess(USER_BOARD_GUESS)
             create_board(USER_BOARD_GUESS)
+            validate_guess(USER_BOARD_GUESS)
+            sleep(0.5)
             break
         if hit_ships(USER_BOARD_GUESS) == 17:
             print_slow("Congratulations, you sank all the computer's ships and"
@@ -331,6 +332,7 @@ def run_game():
             # computer's turn
         while True:
             validate_guess(COMP_BOARD_GUESS)
+            sleep(0.5)
             create_board(COMP_BOARD_GUESS)
             break
         if hit_ships(COMP_BOARD_GUESS) == 17:
