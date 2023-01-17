@@ -53,24 +53,25 @@ def welcome_message():
             break
         print("That's not valid, please enter you name.\n")
         return name
-    print_slow("\033[1m\nHere are just some quick rules "
+    print_fast("\033[1m\nHere are just some quick rules "
                f"before we start the game, {name}: ")
-    print_fast("\033[1m\n\nThe grid consists of 8 rows(A-H) and 8 columns(1-8)"
+    print_slow("\033[1m\n\nThe grid consists of 8 rows(A-H) and 8 columns(1-8)"
                ".\n")
-    print_fast("\033[1m\nThere are 5 different ship types:\n")
-    print_fast("\033[36m      Carrier - 5 in length\n")
-    print_fast("\033[36m      Battleship - 4 in length\n")
-    print_fast("\033[36m      Cruiser - 4 in length\n")
-    print_fast("\033[36m      Submarine - 3 in length\n")
-    print_fast("\033[36m      Destroyer - 2 in length\n")
-    print_fast("\033[0m\033[1m\nThe computer chooses it's ships randomly.\n\n")
-    print_fast(f"\033[1mYou, {name}, will be asked to place your ships, "
+    print_slow("\033[1m\nThere are 5 different ship types:\n")
+    print_slow("\033[95m      Carrier - 5 in length\n")
+    print_slow("\033[36m      Battleship - 4 in length\n")
+    print_slow("\033[36m      Cruiser - 4 in length\n")
+    print_slow("\033[94m      Submarine - 3 in length\n")
+    print_slow("\033[93m      Destroyer - 2 in length\n")
+    print_slow("\033[0m\033[1m\nThe computer chooses it's ships randomly.\n\n")
+    print_slow(f"\033[1mYou, {name}, will be asked to place your ships, "
                "so choose carefully!\n\n")
-    print_fast("\033[1mYou will then take turns trying to destroy each other's"
+    print_slow("\033[1mYou will then take turns trying to destroy each other's"
                " ships.\n\n")
-    print_fast("\033[1mWhoever sinks the ships first wins!\n\n")
+    print_slow("\033[1mWhoever sinks the ships first wins!\n\n")
     sleep(1)
     print_fast(f"\033[1mGood Luck, {name}!\033[0m\n\n")
+    sleep(1)
 
 
 def create_board(board):
@@ -128,8 +129,8 @@ def position_ships(board):
                     # Checks to see if ships do not cross over each other
                     if ships_cross(board, row, column, direction,
                                    length_of_ships):
-                        print("\nYou have already placed a ship here. Please"
-                              " place in empty field.\n")
+                        print_fast("\nYou have already placed a ship here. "
+                                   "Please place in empty field.\n")
                     # ships can be positioned
                     else:
                         if direction == "S":
@@ -143,7 +144,7 @@ def position_ships(board):
                         create_board(USER_BOARD)
                         break
                 else:
-                    print("\nPlease place ship within the grid.\n")
+                    print_fast("\nPlease place ship within the grid.\n")
 
 
 def ship_fits(length_of_ships, row, column, direction):
@@ -185,66 +186,66 @@ def input_user(position_ship):
         # direction positioning
         while True:
             try:
-                direction = input("\nWould you like to position your ship "
-                                  "sideways or downwards? Please enter the "
-                                  "direction of the ship(S for sideways or D "
-                                  "for downwards):\n").upper()
+                direction = input("\n\033[1mWould you like to position your "
+                                  "ship sideways or downwards? Please enter the"
+                                  " direction of the ship(S for sideways or D "
+                                  "for downwards):\033[0m\n").upper()
                 if direction == "S" or direction == "D":
                     break
                 else:
                     raise KeyError
             except KeyError:
-                print("Please enter either S or D.\n")
+                print_fast("Please enter either S or D.\n")
         # row positioning
         while True:
             try:
-                row = input("Which row would you like to place your ship in? "
-                            "Please enter a letter from A-H:\n").upper()
+                row = input("\n\033[1mWhich row would you like to place your ship in? "
+                            "Please enter a letter from A-H:\033[0m\n").upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
                 else:
                     raise KeyError
             except KeyError:
-                print("Please enter a valid letter from A-H.\n")
+                print_fast("Please enter a valid letter from A-H.\n")
         while True:
             try:
-                column = input("Which column would you like to place your ship"
-                               " in? Please enter a number from 1-8:\n")
+                column = input("\n\033[1mWhich column would you like to place your ship"
+                               " in? Please enter a number from 1-8:\033[0m\n")
                 if column in "12345678":
                     column = int(column) - 1
                     break
                 else:
                     raise ValueError
             except ValueError:
-                print("Please enter a valid number from 1-8.\n")
+                print_fast("Please enter a valid number from 1-8.\n")
         return row, column, direction
     # guessing position of ship:
     else:
         while True:
             try:
-                row = str(input("Guess a row where the computer's ship might"
-                                " be located? Please enter a letter from "
-                                "A-H:\n")).upper()
+                row = input("\033[1mGuess a row where the computer's ship might"
+                            " be located? Please enter a letter from "
+                            "A-H:\033[0m\n").upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
                 else:
                     raise KeyError
             except KeyError:
-                print("Please enter a valid letter from A-H.\n")
+                print_fast("Please enter a valid letter from A-H.\n")
         while True:
             try:
-                column = input("Guess a column where the computer's ship might"
+                column = input("\n\033[1mGuess a column where the computer's ship might"
                                " be located? Please enter a number from "
-                               "1-8:\n")
+                               "1-8:\033[0m\n")
                 if column in "12345678":
                     column = int(column) - 1
                     break
                 else:
                     raise ValueError
             except ValueError:
-                print("Please enter a valid number from 1-8.\n")
+                print_fast("Please enter a valid number from 1-8.\n")
         return row, column
 
 
@@ -252,12 +253,20 @@ def hit_ships(board):
     """
     Counts how many ships were hit
     """
-    count = 0
-    for row in board:
-        for column in row:
-            if column == "X":
-                count += 1
-    return count
+    if board == USER_BOARD:
+        count = 0
+        for row in board:
+            for column in row:
+                if column == "\033[91mX\033[0m":
+                    count += 1
+        return count
+    else:
+        count = 0
+        for row in board:
+            for column in row:
+                if column == "\033[92mX\033[0m":
+                    count += 1
+        return count
 
 
 def validate_guess(board):
@@ -296,7 +305,7 @@ def run_game():
     """
     Starts the game
     """
-    start_game = input("\nPlease type S to start the game: ").upper()
+    start_game = input("\n\033[1mPlease type S to start the game:\033[0m ").upper()
     while start_game != "S":
         start_game = input("Please type S to start the game: ").upper()
 
@@ -307,8 +316,7 @@ def run_game():
     while True:
         # player's turn
         while True:
-            print("\n")
-            print_fast("Now it's your turn.\n")
+            print_fast("Now it's your turn.\n\n")
             validate_guess(USER_BOARD_GUESS)
             create_board(USER_BOARD_GUESS)
             break
@@ -333,11 +341,11 @@ def restart_game():
     """
     Asks user if restart is desired.
     """
-    restart = input("Would you like to play again? Enter Y(yes)"
-                    "or N(no): ").upper()
+    restart = input("\n\033[1mWould you like to play again? Enter Y(yes)"
+                    "or N(no):\033[0m ").upper()
     while True:
         if restart == "Y":
-            print_slow("Please run program again.")
+            print_slow("Please run program again.\n")
             break
         elif restart == "N":
             print.slow("Hope you enjoyed the game. See you next time!")
