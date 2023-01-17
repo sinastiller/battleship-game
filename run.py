@@ -187,7 +187,7 @@ def input_user(position_ship):
         while True:
             try:
                 direction = input("\n\033[1mWould you like to position your "
-                                  "ship sideways or downwards? Please enter the"
+                                  "ship sideways or downwards?\nEnter the"
                                   " direction of the ship(S for sideways or D "
                                   "for downwards):\033[0m\n").upper()
                 if direction == "S" or direction == "D":
@@ -199,8 +199,9 @@ def input_user(position_ship):
         # row positioning
         while True:
             try:
-                row = input("\n\033[1mWhich row would you like to place your ship in? "
-                            "Please enter a letter from A-H:\033[0m\n").upper()
+                row = input("\n\033[1mWhich row would you like to place your "
+                            "ship in?\nPlease enter a letter from A-H:"
+                            "\033[0m\n").upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
                     break
@@ -210,8 +211,9 @@ def input_user(position_ship):
                 print_fast("Please enter a valid letter from A-H.\n")
         while True:
             try:
-                column = input("\n\033[1mWhich column would you like to place your ship"
-                               " in? Please enter a number from 1-8:\033[0m\n")
+                column = input("\n\033[1mWhich column would you like to place "
+                               "your ship in?\nPlease enter a number from 1-8:"
+                               "\033[0m\n")
                 if column in "12345678":
                     column = int(column) - 1
                     break
@@ -224,8 +226,8 @@ def input_user(position_ship):
     else:
         while True:
             try:
-                row = input("\033[1mGuess a row where the computer's ship might"
-                            " be located? Please enter a letter from "
+                row = input("\033[1mGuess a row where the computer's ship "
+                            "might be located?\nPlease enter a letter from "
                             "A-H:\033[0m\n").upper()
                 if row in "ABCDEFGH":
                     row = GRID[row]
@@ -236,9 +238,9 @@ def input_user(position_ship):
                 print_fast("Please enter a valid letter from A-H.\n")
         while True:
             try:
-                column = input("\n\033[1mGuess a column where the computer's ship might"
-                               " be located? Please enter a number from "
-                               "1-8:\033[0m\n")
+                column = input("\n\033[1mGuess a column where the computer's "
+                               "ship might be located?\nPlease enter a number "
+                               "from 1-8:\033[0m\n")
                 if column in "12345678":
                     column = int(column) - 1
                     break
@@ -305,7 +307,8 @@ def run_game():
     """
     Starts the game
     """
-    start_game = input("\n\033[1mPlease type S to start the game:\033[0m ").upper()
+    start_game = input("\n\033[1mPlease type S to start the game:\033[0m"
+                       " ").upper()
     while start_game != "S":
         start_game = input("Please type S to start the game: ").upper()
 
