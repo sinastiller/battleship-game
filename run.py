@@ -226,6 +226,7 @@ def input_user(position_ship):
     else:
         while True:
             try:
+                print_slow("Now it's your turn.\n")
                 row = input("\033[1mGuess a row where the computer's ship "
                             "might be located?\nPlease enter a letter from "
                             "A-H:\033[0m\n").upper()
@@ -319,14 +320,14 @@ def run_game():
     while True:
         # player's turn
         while True:
-            print_fast("Now it's your turn.\n\n")
             create_board(USER_BOARD_GUESS)
             validate_guess(USER_BOARD_GUESS)
             sleep(0.5)
             break
         if hit_ships(USER_BOARD_GUESS) == 17:
-            print_slow("Congratulations, you sank all the computer's ships and"
-                       " won the game!\n")
+            sleep(1)
+            print_slow("Congratulations, you sank all the computer's ships\n"
+                       " and won the game!\n")
             restart_game()
             break
             # computer's turn
@@ -336,7 +337,8 @@ def run_game():
             create_board(COMP_BOARD_GUESS)
             break
         if hit_ships(COMP_BOARD_GUESS) == 17:
-            print_slow("You lost. The Computer has destroyed all your ships"
+            sleep(1)
+            print_slow("You lost. The Computer has destroyed all your ships\n"
                        " and won the battle!")
             restart_game()
             break
@@ -353,7 +355,7 @@ def restart_game():
             print_slow("Please run program again.\n")
             break
         elif restart == "N":
-            print.slow("Hope you enjoyed the game. See you next time!")
+            print_slow("Hope you enjoyed the game. See you next time!")
             break
         else:
             print("Please type Y or N.")
