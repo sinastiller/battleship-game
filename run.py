@@ -308,8 +308,8 @@ def run_game():
     """
     Starts the game
     """
-    start_game = input("\n\033[1mPlease type S to start the game:\033[0m"
-                       " ").upper()
+    start_game = input("\n\033[1mPlease type S to start"
+                       "the game:\033[0m").upper()
     while start_game != "S":
         start_game = input("Please type S to start the game: ").upper()
 
@@ -325,9 +325,10 @@ def run_game():
             sleep(0.5)
             break
         if hit_ships(USER_BOARD_GUESS) == 17:
+            create_board(USER_BOARD_GUESS)
             sleep(1)
-            print_slow("Congratulations, you sank all the computer's ships\n"
-                       " and won the game!\n")
+            print_slow("\nCongratulations, you sank all the computer's ships\n"
+                       "and won the game!\n")
             restart_game()
             break
             # computer's turn
@@ -337,9 +338,10 @@ def run_game():
             create_board(COMP_BOARD_GUESS)
             break
         if hit_ships(COMP_BOARD_GUESS) == 17:
+            create_board(COMP_BOARD_GUESS)
             sleep(1)
-            print_slow("You lost. The Computer has destroyed all your ships\n"
-                       " and won the battle!")
+            print_slow("\nYou lost. The Computer has destroyed all your"
+                       " ships\nand won the battle!")
             restart_game()
             break
 
@@ -348,11 +350,11 @@ def restart_game():
     """
     Asks user if restart is desired.
     """
-    restart = input("\n\033[1mWould you like to play again? Enter Y(yes)"
+    restart = input("\n\033[1mWould you like to play again? Enter Y(yes) "
                     "or N(no):\033[0m ").upper()
     while True:
         if restart == "Y":
-            print_slow("Please run program again.\n")
+            print_slow("Please run program again to play a new round.\n")
             break
         elif restart == "N":
             print_slow("Hope you enjoyed the game. See you next time!")
