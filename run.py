@@ -309,7 +309,7 @@ def run_game():
     Starts the game
     """
     start_game = input("\n\033[1mPlease type S to start"
-                       "the game:\033[0m").upper()
+                       " the game:\033[0m").upper()
     while start_game != "S":
         start_game = input("Please type S to start the game: ").upper()
 
