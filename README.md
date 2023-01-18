@@ -7,6 +7,7 @@ The Battleship Game is a war-themed game for people of all ages. It has been aro
 
 ![Am I Responsive](readme.images/Responsive.png)
 
+
 ## Contents
 
 * [User Experience](#user-experience)
@@ -24,8 +25,8 @@ The Battleship Game is a war-themed game for people of all ages. It has been aro
 * [Testing](#testing)
 * [Credits](#credits)
     * [Code Used](#code-used)
-    * [Content](#content)
     * [Acknowledgements](#acknowledgements)
+
 
 ## [User Experience](#user-experience)
 
@@ -63,6 +64,7 @@ The flowchart is made to guide me throught the process to acknowlegde each step 
 ![FlowChart](readme.images/Battleships%20-%20Stages%20of%20Python%20Program.png)
 
 This is my initial approach towards my project, which might change throughout the process of the game development.
+
 
 ## [Features](#features)
 
@@ -119,23 +121,73 @@ This is my initial approach towards my project, which might change throughout th
 
 ## [Technologies Used](#technologies-used)
 
+### [Languages Used](#languages-used)
+ 
+**Python** was the main language used for creating the Battleship game.
+
+### [Frameworks, Libraries & Programs Used](#frameworks-libraries-programs-used)
+
+Other frameworks, not mentioned above yet, include:
+* [Gitpod](https://www.gitpod.io/) for writing down the code and creating the game.
+* [Heroku](https://www.heroku.com), a Cloud Application Platform, for deploying the game to. 
+* [Github](https://github.com/) to save and store the progress and files used on the website.
+* [Am I Responsive](https://ui.dev/amiresponsive) was used to create a shot to see responsiveness on different devices.
+* [TheSpruceCrafts](https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069) helped me to apply the rules to the Battleship Game.
+* [Python Docs](https://docs.python.org/3/) guided me throughout the whole project and helped me to understand certain parts of it better.
 
 
+## [Deployment](#deployment)
 
 
+This project was created by using Gitpod. I used the pre-built template from [Code Institute](https://github.com/Code-Institute-Org/python-essentials-template).
+The following commands were used:
+* **git add .** - to add all the changes.
+* **git commit -m "..."** - to commit all the changes to the local repository.
+* **git push** - to push the committed changes to the Github repository.
+
+### **Deployment to HerokuApp**
+1. Create a list of requirements, commit and push to GitHub.
+2. Create Account with Heroku.
+3. On the Heroku Dashboard select "create new app".
+4. Give the app a name (it must be unique as each app name can only exist once) and choose your current region.
+5. Click "Create App".
+6. On the "Settings" Tab scroll to Config Vars.
+7. Create a Config Var.
+8. In the "KEY" field enter CREDS and for the "VALUE" field copy the creds.json link from your file and click "Add".
+9. In the "KEY" field enter PORT and for the "VALUE" field enter 8000 and click "Add".
+10. Add Buildpacks.
+11. Choose the first one to be python and press "save".
+12. Choose the second one to be nodejs and press "save".
+13. Move to "Deploy" Tab.
+14. Select "GitHub" as Deploment Methond and connect to your GitHub and the repository you want to upload.
+15. Choose between automatic/manual deploy option.
+16. After app was successfully deployed, click the "View" button to connect to webpage.
+
+### **Cloning**
+
+1. Navigate to [project repository](https://github.com/sinastiller/battleship-game).
+2. Click on the button Code next to the Gitpod button.
+3. Choose between HTTPS, SSH and Github CLI and copy the link.
+4. Open Git Bash.
+5. Change the current working directory to the location where you want the cloned directory.
 
 
+## [Testing](#testing)
+
+Please find the carried out testing on [TESTING.md](TESTING.md).
 
 
+## [Credits](#credits)
 
+### [Code Used](#code-used)
 
+* [Stackoverflow](https://stackoverflow.com/questions/53446425/creating-a-row-of-numbers-letters-in-my-python-battleship-game) was taking into account when creating the player and computer boards.
+* [Code Institue's](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/) Project Scope video was used as a general guide.
+* Various [Stackoverflow Posts](https://stackoverflow.com/search?q=battleship+python&s=e37ddea6-a081-4dc5-ba91-59670214928b) helped me to create and understand the different functions created.
+* The [Python Tutorial for Beginners](https://www.youtube.com/watch?v=8124kv-632k&t=5s) from FreeCodeCamp was used to refresh my whole understanding of the programming language Python.
+* The [CodeCademy](https://www.youtube.com/watch?v=9Rk4oRkKnCs) Video guided me in utilizing the different lists and functions in Python.
+* [Knowledge Mavens'](https://www.youtube.com/watch?v=tF1WRCrd_HQ&t=0s) videos were a very useful guide to create my Battleship Project.
 
-!https://stackoverflow.com/questions/53446425/creating-a-row-of-numbers-letters-in-my-python-battleship-game - creating the board
+## [Acknowledgements](#acknowledgements)
 
-https://stackoverflow.com/questions/20302331/typing-effect-in-python - fast/slow typing
-https://lingojam.com/CoolTextFonts - text/fonts
-https://stackoverflow.com/questions/8924173/how-can-i-print-bold-text-in-python fontstyles/colours
-https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069 battleships rules
-https://stackoverflow.com/search?q=battleship+python&s=e37ddea6-a081-4dc5-ba91-59670214928b different codes
-https://www.youtube.com/watch?v=8124kv-632k&t=5s to learn more about pyhton
-https://www.youtube.com/watch?v=9Rk4oRkKnCs to learn more about lists and functions
+I would like to thank my amazing Mentor Jubril Akolade for his patience and guidance throughout the Project, the numerous brilliant post in the Slack Community, my gorgeous and cute little cat Maeve for her cuteness overload and especially my partner Lais, for having to put up with my long hours - be it late nights or early mornings - in front of the computer and who always encouraged me not to give up during difficult moments.
